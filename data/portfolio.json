@@ -11,7 +11,7 @@
     "id": "2",
     "title": "Bookkaru",
     "category": "Cloud Native Migration",
-    "image": "https://placehold.co/960x640/0a0f1d/f1f5f9?text=Retail+ERP+Sync",
+    "image": "https://bookkaru.com/dist/assets/logo-quvArLFD.png",
     "description": "Migrated the application to cloud native infrastructre, containerized and horizontal scaling architecture. Secure the API, access management with zero trust network architecture.",
     "link": "bookkaru.com"
   },
