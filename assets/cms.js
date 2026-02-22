@@ -28,7 +28,7 @@ async function loadCMSData() {
     try {
       const response = await fetch('/data/testimonials.json');
       const testimonials = await response.json();
-      testimonialsContainer.innerHTML = testimonials.map(t => `
+      const testimonialHtml = testimonials.map(t => `
         <div class="premium-card reveal testimonial-card opacity-90 h-full flex flex-col">
           <p class="italic mb-6 text-lg text-slate-700 leading-relaxed flex-grow">"${t.quote || 'No quote available'}"</p>
           <div class="flex items-center gap-4">
@@ -40,6 +40,14 @@ async function loadCMSData() {
           </div>
         </div>
       `).join('');
+
+      // Create a double track for infinite loop
+      testimonialsContainer.innerHTML = `
+        <div class="testimonials-track">
+          ${testimonialHtml}
+          ${testimonialHtml}
+        </div>
+      `;
       if (window.refreshReveal) window.refreshReveal();
     } catch (e) { console.error('Error loading testimonials:', e); }
   }
