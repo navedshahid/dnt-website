@@ -31,11 +31,11 @@
           Intelligence Defined
         </span>
         <h1 class="text-5xl md:text-7xl font-black mb-8 leading-[1.1] tracking-tight text-white">
-          The Next Generation of <span class="heading-gradient">Enterprise AI.</span>
+          Enterprise Platforms that <span class="heading-gradient">predict, scale,</span> and deliver.
         </h1>
-        <p class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed max-w-lg">
-          We bridge the gap between complex data and strategic action. Delivering world-class ERP, bespoke AI agents,
-          and immersive cloud infrastructures.
+        <p class="text-lg md:text-xl text-slate-400 mb-10 leading-relaxed max-w-xl">
+          50% deep ERP & web app engineering (Dynamics 365 F&O, Odoo, custom apps). 25% strategic IT consulting. 25%
+          WiserMachines predictive IoT + AI. One integrated team for your core systems and intelligent edge.
         </p>
         <div class="flex flex-col sm:flex-row gap-6">
           <a href="#contact" class="btn-elite btn-elite-primary text-lg px-10 py-5">
@@ -45,6 +45,20 @@
             class="flex items-center gap-3 text-white font-bold hover:gap-5 transition-all group">
             Explore Services <i class="fas fa-arrow-right text-xs group-hover:text-blue-500 transition-colors"></i>
           </a>
+        </div>
+        <div class="grid grid-cols-3 gap-3 text-xs uppercase tracking-[0.2em] font-black text-slate-400 mt-8 max-w-xl">
+          <div class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-center">
+            <div class="text-2xl text-white">50%</div>
+            <div class="text-[10px]">D365 F&O • Odoo • Web Apps</div>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-center">
+            <div class="text-2xl text-white">25%</div>
+            <div class="text-[10px]">IT Consulting</div>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-center">
+            <div class="text-2xl text-white">25%</div>
+            <div class="text-[10px]">WiserMachines IoT + AI</div>
+          </div>
         </div>
       </div>
 
@@ -208,29 +222,44 @@
 
   <!-- Contact Section -->
   <section id="contact" class="py-24 bg-slate-50 reveal">
-    <div class="max-w-4xl mx-auto px-6 glass-card bg-white p-12 relative overflow-hidden">
-      <div class="absolute top-0 right-0 w-64 h-64 bg-blue-600/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-
-      <div class="relative z-10 grid md:grid-cols-2 gap-12">
-        <div>
-          <h2 class="text-3xl font-black mb-6">Let's build something <span class="text-blue-600">unmatched.</span></h2>
-          <p class="text-slate-500 mb-8">We respond to all serious inquiries within 24 hours.</p>
-          <div class="space-y-4">
-            <div class="flex items-center gap-4 text-sm font-bold"><i class="fas fa-envelope text-blue-600"></i>
-              hello@digitalnatives.ai</div>
-            <div class="flex items-center gap-4 text-sm font-bold"><i class="fas fa-map-marker-alt text-blue-600"></i>
-              Global Presence | Remote First</div>
+    <div class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-10 items-stretch">
+      <div class="glass-card bg-white p-10 relative overflow-hidden">
+        <div class="absolute -top-16 -right-16 w-48 h-48 bg-blue-600/10 rounded-full blur-3xl"></div>
+        <div class="relative z-10">
+          <span class="text-xs font-black uppercase tracking-[0.3em] text-blue-500 mb-4 block">Talk to us</span>
+          <h2 class="text-3xl font-black mb-4">One team across ERP, AI, and IoT.</h2>
+          <p class="text-slate-500 mb-6">Tell us about Dynamics 365 F&O, Odoo, custom apps, or WiserMachines predictive IoT. We route it to the right expert within 24 hours.</p>
+          <div class="space-y-3 text-sm font-bold text-slate-700">
+            <div class="flex gap-3 items-center"><i class="fas fa-envelope text-blue-600"></i> hello@digitalnatives.ai</div>
+            <div class="flex gap-3 items-center"><i class="fas fa-headset text-blue-600"></i> Priority support for active clients</div>
+            <div class="flex gap-3 items-center"><i class="fas fa-map-marker-alt text-blue-600"></i> UK & Pakistan delivery hubs • Remote-first</div>
+          </div>
+          <div class="flex flex-wrap gap-3 mt-6">
+            <a href="https://calendly.com/hello-digitalnatives" class="btn-elite btn-elite-primary px-6 py-3">Book a Meeting</a>
+            <button type="button" id="open-chat" class="btn-elite bg-slate-900 text-white px-6 py-3">Chat with AI</button>
           </div>
         </div>
+      </div>
 
-        <form class="space-y-4">
-          <input type="text" placeholder="Your Name"
-            class="w-full p-4 border border-slate-200 rounded-xl focus:ring-2 ring-blue-100 outline-none transition-all">
-          <input type="email" placeholder="Business Email"
-            class="w-full p-4 border border-slate-200 rounded-xl focus:ring-2 ring-blue-100 outline-none transition-all">
-          <textarea placeholder="Tell us about your challenge" rows="4"
+      <div class="premium-card bg-white p-10 shadow-xl">
+        <div class="text-xs font-black uppercase tracking-[0.3em] text-slate-400 mb-4">Send a brief</div>
+        <form id="contact-form" class="space-y-4" data-endpoint="https://contact.digitalnatives.work">
+          <div class="grid md:grid-cols-2 gap-4">
+            <input name="name" required placeholder="Your Name"
+              class="w-full p-4 border border-slate-200 rounded-xl focus:ring-2 ring-blue-100 outline-none transition-all">
+            <input name="email" type="email" required placeholder="Business Email"
+              class="w-full p-4 border border-slate-200 rounded-xl focus:ring-2 ring-blue-100 outline-none transition-all">
+          </div>
+          <textarea name="message" required placeholder="Describe your project or challenge" rows="4"
             class="w-full p-4 border border-slate-200 rounded-xl focus:ring-2 ring-blue-100 outline-none transition-all"></textarea>
-          <button class="btn-elite btn-elite-primary w-full py-4">Send Message</button>
+          <div class="flex flex-wrap gap-3 text-xs font-bold text-slate-500">
+            <label class="flex items-center gap-2"><input type="checkbox" name="tracks" value="ERP" class="accent-blue-600"> D365 / Odoo</label>
+            <label class="flex items-center gap-2"><input type="checkbox" name="tracks" value="AI" class="accent-blue-600"> AI / WiserMachines</label>
+            <label class="flex items-center gap-2"><input type="checkbox" name="tracks" value="Apps" class="accent-blue-600"> Custom Apps</label>
+            <label class="flex items-center gap-2"><input type="checkbox" name="tracks" value="Consulting" class="accent-blue-600"> Consulting</label>
+          </div>
+          <button class="btn-elite btn-elite-primary w-full py-4" id="contact-submit">Send Message</button>
+          <div id="contact-status" class="text-sm font-bold text-slate-500"></div>
         </form>
       </div>
     </div>
@@ -240,6 +269,104 @@
 
   <script src="/assets/site-components.js"></script>
   <script src="/assets/cms.js"></script>
+  <script>
+    // Contact form -> Cloudflare Worker (contactmailer). Fallback to mailto if endpoint fails.
+    (() => {
+      const form = document.getElementById('contact-form');
+      if (!form) return;
+      const statusEl = document.getElementById('contact-status');
+      const btn = document.getElementById('contact-submit');
+      const endpoint = form.dataset.endpoint || '';
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(form).entries());
+        const tracks = Array.from(form.querySelectorAll('input[name="tracks"]:checked')).map(i => i.value);
+        data.tracks = tracks;
+        statusEl.textContent = '';
+        btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+        try {
+          if (endpoint) {
+            const resp = await fetch(endpoint, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ name: data.name, email: data.email, message: data.message + (tracks.length ? `\nTracks: ${tracks.join(', ')}` : '') })
+            });
+            if (!resp.ok) throw new Error('Network');
+            statusEl.textContent = 'Sent! We will reply within 24 hours.';
+            form.reset();
+          } else {
+            throw new Error('No endpoint configured');
+          }
+        } catch (err) {
+          // mailto fallback
+          const body = encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\nTracks: ${tracks.join(', ')}\n\nMessage:\n${data.message}`);
+          window.location.href = `mailto:hello@digitalnatives.ai?subject=Website Inquiry&body=${body}`;
+          statusEl.textContent = 'Opened email client. If it did not open, email hello@digitalnatives.ai';
+        } finally {
+          btn.disabled = false; btn.innerHTML = 'Send Message';
+        }
+      });
+    })();
+
+    // Lightweight chat launcher -> chat-agent Worker
+    (() => {
+      const chatEndpoint = 'https://chat.digitalnatives.work'; // replace with your Worker URL
+      const openBtn = document.getElementById('open-chat');
+      if (!openBtn) return;
+      const sheet = document.createElement('div');
+      sheet.className = 'fixed bottom-6 right-6 w-80 max-w-[90vw] bg-white shadow-2xl border border-slate-200 rounded-2xl overflow-hidden hidden';
+      sheet.innerHTML = `
+        <div class="px-4 py-3 bg-slate-900 text-white flex justify-between items-center">
+          <span class="text-sm font-bold">AI Assistant</span>
+          <button id="chat-close" class="text-slate-300 hover:text-white"><i class="fas fa-times"></i></button>
+        </div>
+        <div id="chat-log" class="p-4 space-y-3 max-h-72 overflow-y-auto text-sm"></div>
+        <form id="chat-form" class="p-3 border-t border-slate-200 flex gap-2">
+          <input id="chat-input" class="flex-grow border border-slate-200 rounded-lg px-3 py-2 text-sm focus:ring-2 ring-blue-100 outline-none" placeholder="Ask about services...">
+          <button class="btn-elite btn-elite-primary px-3 py-2 text-xs">Send</button>
+        </form>
+      `;
+      document.body.appendChild(sheet);
+      const chatLog = sheet.querySelector('#chat-log');
+      const chatForm = sheet.querySelector('#chat-form');
+      const chatInput = sheet.querySelector('#chat-input');
+      const closeBtn = sheet.querySelector('#chat-close');
+      const history = [{ role: 'user', parts: [{ text: 'You are chatting on the Digital Natives website.' }] }];
+
+      function addMessage(text, from) {
+        const bubble = document.createElement('div');
+        bubble.className = from === 'me' ? 'bg-blue-50 text-slate-800 p-3 rounded-xl ml-8' : 'bg-slate-100 text-slate-800 p-3 rounded-xl mr-8';
+        bubble.textContent = text;
+        chatLog.appendChild(bubble);
+        chatLog.scrollTop = chatLog.scrollHeight;
+      }
+
+      openBtn.onclick = () => { sheet.classList.remove('hidden'); chatInput.focus(); };
+      closeBtn.onclick = () => sheet.classList.add('hidden');
+
+      chatForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const msg = chatInput.value.trim();
+        if (!msg) return;
+        addMessage(msg, 'me');
+        chatInput.value = '';
+        try {
+          const resp = await fetch(chatEndpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ history: [...history, { role: 'user', parts: [{ text: msg }] }] })
+          });
+          const data = await resp.json();
+          const answer = data.text || 'Thanks! We will reply shortly.';
+          history.push({ role: 'model', parts: [{ text: answer }] });
+          addMessage(answer, 'ai');
+        } catch (err) {
+          addMessage('Unable to reach the assistant. Please try again or use the form.', 'ai');
+        }
+      });
+    })();
+  </script>
 </body>
 
 </html>
