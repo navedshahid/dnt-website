@@ -12,7 +12,7 @@ async function loadCMSData() {
       const response = await fetch('/data/clients.json');
       const clients = await response.json();
       const logoHtml = clients.map(client => `
-        <a href="${client.url}" class="client-logo px-3 py-2 inline-flex items-center justify-center">
+        <a href="${client.url}" class="client-logo inline-flex items-center justify-center">
           <img src="${client.logo}" alt="${client.name}">
         </a>
       `).join('');

@@ -117,7 +117,7 @@ h4 {
 
 /* Clients marquee */
 #clients-track {
-  animation: marquee 18s linear infinite;
+  animation: marquee 30s linear infinite;
   padding: 8px 0;
 }
 
@@ -126,15 +126,27 @@ h4 {
 }
 
 #clients-list img,
-#clients-list-dup img {
-  height: 150px;
-  /* Increased from 110px */
+#clients-list-dup img,
+.client-logo img {
+  height: 120px !important;
+  width: auto !important;
+  min-width: 120px;
+  max-width: none !important;
   object-fit: contain;
-  filter: none;
-  /* Removed grayscale by default */
-  opacity: 1;
+  flex-shrink: 0;
+  filter: none !important;
+  opacity: 1 !important;
   transition: all 0.3s ease;
-  padding: 0 10px;
+  padding: 0 40px;
+}
+
+.client-logo {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  height: 120px !important;
+  min-width: 120px;
+  flex-shrink: 0;
 }
 
 #clients-list img:hover,
