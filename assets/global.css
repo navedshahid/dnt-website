@@ -179,20 +179,18 @@ h4 {
 /* Testimonials horizontal scroller */
 #testimonials-list {
   display: flex;
-  gap: 32px;
-  overflow-x: auto;
-  padding: 20px 0;
+  gap: 24px;
+  overflow-x: hidden;
+  padding: 40px 0;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-  /* Hide scrollbar for Firefox */
   -ms-overflow-style: none;
-  /* Hide scrollbar for IE and Edge */
 }
 
 .testimonials-track {
   display: flex;
-  gap: 32px;
-  animation: testimonial-marquee 40s linear infinite;
+  gap: 24px;
+  animation: testimonial-marquee 60s linear infinite;
 }
 
 .testimonials-track:hover {
@@ -219,9 +217,37 @@ h4 {
   border-radius: 999px;
 }
 
-.testimonial-card {
-  min-width: 320px;
+.testimonial-card.compact-glass {
+  min-width: 280px;
+  max-width: 280px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.05),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   scroll-snap-align: start;
+}
+
+.testimonial-card.compact-glass:hover {
+  transform: translateY(-8px) scale(1.02);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--primary);
+  box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.15);
+}
+
+.testimonial-card .quote-icon {
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.5;
 }
 
 /* Buttons */

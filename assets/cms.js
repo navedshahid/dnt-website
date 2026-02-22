@@ -29,13 +29,14 @@ async function loadCMSData() {
       const response = await fetch('/data/testimonials.json');
       const testimonials = await response.json();
       const testimonialHtml = testimonials.map(t => `
-        <div class="premium-card reveal testimonial-card opacity-90 h-full flex flex-col">
-          <p class="italic mb-6 text-lg text-slate-700 leading-relaxed flex-grow">"${t.quote || 'No quote available'}"</p>
-          <div class="flex items-center gap-4">
-            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">${(t.name || 'U').charAt(0)}</div>
+        <div class="compact-glass testimonial-card h-full flex flex-col">
+          <i class="fas fa-quote-left quote-icon"></i>
+          <p class="italic mb-6 text-sm text-slate-700 leading-relaxed flex-grow">"${t.quote || 'No quote available'}"</p>
+          <div class="flex items-center gap-3 mt-auto">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-white text-xs font-black shadow-lg">${(t.name || 'U').charAt(0)}</div>
             <div>
-              <div class="font-black text-slate-900 leading-tight">${t.name || 'Anonymous'}</div>
-              <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">${t.designation || 'Client'}</div>
+              <div class="font-black text-slate-900 leading-tight text-xs">${t.name || 'Anonymous'}</div>
+              <div class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">${t.designation || 'Client'}</div>
             </div>
           </div>
         </div>
