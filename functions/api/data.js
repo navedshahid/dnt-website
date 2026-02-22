@@ -37,6 +37,16 @@ export async function onRequest(context) {
     // Handle data fetching (GET)
     if (request.method === 'GET') {
         try {
+            // Prefer KV if bound (latest published data)
+            if (env.CMS_KV) {
+                const kvValue = await env.CMS_KV.get(type);
+                if (kvValue) {
+                    return new Response(kvValue, {
+                        headers: { 'Content-Type': 'application/json' }
+                    });
+                }
+            }
+
             // In a real Pages environment, static assets are relative to root.
             // When running in a Function, we fetch from the origin.
             const response = await fetch(`${url.origin}/data/${type}.json`);
@@ -51,14 +61,16 @@ export async function onRequest(context) {
         try {
             const data = await request.json();
 
-            // LOGIC: Since we don't have direct FS access in Workers, 
-            // we would normally write to KV: `await env.CMS_KV.put(type, JSON.stringify(data))`
-            // For now, we return the data and tell the user to update their repo
-            // OR we can use a GitHub API integration here if the user provides a token.
+            // Persist to KV if available
+            if (env.CMS_KV) {
+                await env.CMS_KV.put(type, JSON.stringify(data, null, 2));
+            }
 
             return new Response(JSON.stringify({
                 success: true,
-                message: 'Data processed. Note: To persist changes, update the JSON files in your repository.',
+                message: env.CMS_KV
+                    ? 'Data saved to KV. Live content will read from KV first.'
+                    : 'Data processed. Note: To persist changes, update the JSON files in your repository.',
                 data: data
             }), {
                 headers: { 'Content-Type': 'application/json' }
