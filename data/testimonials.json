@@ -1,17 +1,17 @@
 [
-    {
-        "name": "O'Neill & Brennan (UK)",
-        "designation": "Construction Staffing & Logistics",
-        "quote": "Digital Natives delivered a resilient ERP + reporting stack that cut handoffs and gave our teams real-time visibility on every site."
-    },
-    {
-        "name": "Cloud Tribe (Pakistan)",
-        "designation": "Cloud & Digital Services",
-        "quote": "Their AI and web engineering squads ship fast, with the governance and security discipline we need for enterprise clients."
-    },
-    {
-        "name": "Canal Palms",
-        "designation": "Real Estate & Hospitality",
-        "quote": "Working with Digital Natives has been a seamless experience. They didn't just build a web application; they engineered a high-performance solution that meets world-class standards."
-    }
+  {
+    "name": "O'Neill & Brennan (UK)",
+    "designation": "Construction Staffing & Logistics",
+    "quote": "Digital Natives delivered a resilient Azure Cloud infrastructre and reduce the endpoint management overhead by deploying the M 365 Intune, defender that cut handoffs and gave our teams real-time visibility on every site. "
+  },
+  {
+    "name": "Cloud Tribe (Pakistan)",
+    "designation": "Cloud & Digital Services",
+    "quote": "Their AI and web engineering squads ship fast, with the governance and security discipline we need for enterprise clients."
+  },
+  {
+    "name": "Canal Palms",
+    "designation": "Real Estate & Hospitality",
+    "quote": "Working with Digital Natives has been a seamless experience. They didn't just build a web application; they engineered a high-performance solution that meets world-class standards."
+  }
 ]
