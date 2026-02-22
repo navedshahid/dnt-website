@@ -18,5 +18,10 @@
     "name": "Bookkaru",
     "logo": "/assets/clients/bookkaru.png",
     "url": "https://bookkaru.com/"
+  },
+  {
+    "name": "Canal Palms",
+    "logo": "/assets/clients/canalpalms.png",
+    "url": "https://canalpalms.com/"
   }
 ]

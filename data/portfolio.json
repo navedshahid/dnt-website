@@ -14,5 +14,13 @@
         "image": "https://placehold.co/960x640/0a0f1d/f1f5f9?text=Retail+ERP+Sync",
         "description": "Real-time synchronization between Odoo and Microsoft Dynamics.",
         "link": "#"
+    },
+    {
+        "id": "3",
+        "title": "Canal Palms Digital Transformation",
+        "category": "Predictive IoT + Secure Platforms",
+        "image": "https://placehold.co/960x640/0a0f1d/f1f5f9?text=Canal+Palms",
+        "description": "Modernized a luxury housing platform into a secure, automated ecosystem: React 19 front-end with Framer Motion, Laravel 9 APIs with JWT/Sanctum, encrypted storage, and Cloudflare Zero Trust tunnels for hidden origins, DDoS mitigation, and secure payments (UBL/Stripe).",
+        "link": "#"
     }
 ]
