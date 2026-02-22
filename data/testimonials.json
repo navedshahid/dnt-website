@@ -1,12 +1,12 @@
 [
     {
-        "name": "John Doe",
-        "designation": "CEO, Tech Corp",
-        "quote": "Digital Natives transformed our legacy systems into a modern AI-driven platform. Highly recommended!"
+        "name": "O'Neill & Brennan (UK)",
+        "designation": "Construction Staffing & Logistics",
+        "quote": "Digital Natives delivered a resilient ERP + reporting stack that cut handoffs and gave our teams real-time visibility on every site."
     },
     {
-        "name": "Jane Smith",
-        "designation": "Operations Manager, Global Logistics",
-        "quote": "The Odoo implementation was seamless. We've seen a 30% increase in efficiency within 3 months."
+        "name": "Cloud Tribe (Pakistan)",
+        "designation": "Cloud & Digital Services",
+        "quote": "Their AI and web engineering squads ship fast, with the governance and security discipline we need for enterprise clients."
     }
 ]

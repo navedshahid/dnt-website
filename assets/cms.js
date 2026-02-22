@@ -6,15 +6,18 @@
 async function loadCMSData() {
   // Load Clients
   const clientsContainer = document.getElementById('clients-list');
+  const clientsDupContainer = document.getElementById('clients-list-dup');
   if (clientsContainer) {
     try {
       const response = await fetch('/data/clients.json');
       const clients = await response.json();
-      clientsContainer.innerHTML = clients.map(client => `
-        <a href="${client.url}" class="client-logo grayscale hover:grayscale-0 transition-all opacity-40 hover:opacity-100 p-4">
-          <img src="${client.logo}" alt="${client.name}" class="h-10 md:h-12 mx-auto">
+      const logoHtml = clients.map(client => `
+        <a href="${client.url}" class="client-logo px-3 py-2 inline-flex items-center justify-center">
+          <img src="${client.logo}" alt="${client.name}">
         </a>
       `).join('');
+      clientsContainer.innerHTML = logoHtml;
+      if (clientsDupContainer) clientsDupContainer.innerHTML = logoHtml;
     } catch (e) { console.error('Error loading clients:', e); }
   }
 
@@ -25,8 +28,8 @@ async function loadCMSData() {
       const response = await fetch('/data/testimonials.json');
       const testimonials = await response.json();
       testimonialsContainer.innerHTML = testimonials.map(t => `
-        <div class="premium-card reveal">
-          <p class="italic mb-6 text-lg text-slate-700">"${t.quote}"</p>
+        <div class="premium-card reveal testimonial-card opacity-90">
+          <p class="italic mb-6 text-lg text-slate-700 leading-relaxed">"${t.quote}"</p>
           <div class="flex items-center gap-4">
             <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">${t.name.charAt(0)}</div>
             <div>

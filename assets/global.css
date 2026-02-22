@@ -16,6 +16,11 @@ html {
   font-size: 16px;
 }
 
+/* Offset anchors for sticky header */
+[id] {
+  scroll-margin-top: 96px;
+}
+
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   color: #334155;
@@ -89,6 +94,42 @@ h4 {
   transform: translateY(-8px);
   box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.1);
   border-color: #e2e8f0;
+}
+
+/* Clients marquee */
+#clients-track {
+  animation: marquee 18s linear infinite;
+  padding: 8px 0;
+}
+#clients-track:hover {
+  animation-play-state: paused;
+}
+#clients-list img,
+#clients-list-dup img {
+  height: 42px;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+#clients-list img:hover,
+#clients-list-dup img:hover {
+  filter: grayscale(0);
+  opacity: 1;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Testimonials fade */
+.testimonial-card {
+  transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;
+}
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -18px rgba(0,0,0,0.15);
+  opacity: 1;
 }
 
 /* Buttons */

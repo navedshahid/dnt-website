@@ -39,7 +39,7 @@ function renderHeader(config) {
       <nav class="hidden md:flex items-center gap-8 text-sm font-semibold">
         ${menuHtml}
         <a href="${config.contact.meeting_link}" target="_blank" class="btn-elite btn-elite-primary text-xs px-6 py-2">
-          Book a Meeting
+          Book a Consultation
         </a>
       </nav>
 
