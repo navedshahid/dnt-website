@@ -41,10 +41,19 @@ function renderHeader(config) {
         <a href="${config.contact.meeting_link}" target="_blank" class="btn-elite btn-elite-primary text-xs px-6 py-2">
           Book a Consultation
         </a>
-        <div id="services-dropdown" class="absolute top-full mt-3 left-0 bg-white shadow-xl rounded-xl border border-slate-200 hidden min-w-[220px]">
-          <a href="/services.html#pillar1" class="block px-4 py-3 text-slate-700 hover:bg-slate-50">ERP & IT Consulting</a>
-          <a href="/services.html#pillar2" class="block px-4 py-3 text-slate-700 hover:bg-slate-50">Applied AI & Data</a>
-          <a href="/services.html#pillar3" class="block px-4 py-3 text-slate-700 hover:bg-slate-50">Custom Apps & Platforms</a>
+        <div id="services-dropdown" class="absolute top-full mt-3 left-0 bg-white shadow-2xl rounded-2xl border border-slate-200 hidden w-[520px]">
+          <div class="grid grid-cols-2 gap-0">
+            <div class="p-4 border-r border-slate-100">
+              <div class="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400 mb-2">ERP & Consulting</div>
+              <a href="/services.html#pillar1" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold">ERP & IT Consulting</a>
+              <a href="/services.html#services" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-50 text-sm">Dynamics 365 F&O · Odoo · Governance</a>
+            </div>
+            <div class="p-4">
+              <div class="text-[10px] font-black uppercase tracking-[0.25em] text-slate-400 mb-2">AI & Apps</div>
+              <a href="/services.html#pillar2" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold">Applied AI & Data</a>
+              <a href="/services.html#pillar3" class="block px-3 py-2 rounded-lg text-slate-700 hover:bg-slate-50 font-semibold">Custom Apps & Platforms</a>
+            </div>
+          </div>
         </div>
       </nav>
 
@@ -171,16 +180,21 @@ function initInteractions() {
     if (nav && dropdown) {
         const servicesLink = Array.from(nav.querySelectorAll('a')).find(a => a.textContent.trim().toLowerCase() === 'services');
         if (servicesLink) {
-            const show = () => dropdown.classList.remove('hidden');
-            const hide = () => dropdown.classList.add('hidden');
+            let hideTimer;
+            const show = () => { clearTimeout(hideTimer); dropdown.classList.remove('hidden'); align(); };
+            const hide = () => { hideTimer = setTimeout(() => dropdown.classList.add('hidden'), 200); };
             servicesLink.addEventListener('mouseenter', show);
-            servicesLink.addEventListener('mouseleave', () => setTimeout(hide, 150));
+            servicesLink.addEventListener('mouseleave', hide);
             dropdown.addEventListener('mouseenter', show);
             dropdown.addEventListener('mouseleave', hide);
-            // Position dropdown relative to the services link
+            servicesLink.addEventListener('click', (e) => { // first click opens, second follows link
+                if (dropdown.classList.contains('hidden')) { e.preventDefault(); show(); }
+            });
             const align = () => {
                 const rect = servicesLink.getBoundingClientRect();
-                dropdown.style.left = `${rect.left}px`;
+                const navRect = nav.getBoundingClientRect();
+                const left = rect.left - navRect.left;
+                dropdown.style.left = `${Math.max(0, left - 40)}px`;
             };
             window.addEventListener('resize', align);
             align();
