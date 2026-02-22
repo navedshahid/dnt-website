@@ -28,13 +28,13 @@ async function loadCMSData() {
       const response = await fetch('/data/testimonials.json');
       const testimonials = await response.json();
       testimonialsContainer.innerHTML = testimonials.map(t => `
-        <div class="premium-card reveal testimonial-card opacity-90">
-          <p class="italic mb-6 text-lg text-slate-700 leading-relaxed">"${t.quote}"</p>
+        <div class="premium-card reveal testimonial-card opacity-90 h-full flex flex-col">
+          <p class="italic mb-6 text-lg text-slate-700 leading-relaxed flex-grow">"${t.quote || 'No quote available'}"</p>
           <div class="flex items-center gap-4">
-            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">${t.name.charAt(0)}</div>
+            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">${(t.name || 'U').charAt(0)}</div>
             <div>
-              <div class="font-black text-slate-900 leading-tight">${t.name}</div>
-              <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">${t.designation}</div>
+              <div class="font-black text-slate-900 leading-tight">${t.name || 'Anonymous'}</div>
+              <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">${t.designation || 'Client'}</div>
             </div>
           </div>
         </div>
@@ -82,8 +82,8 @@ async function loadCMSData() {
           <div class="p-8 flex flex-col flex-grow">
             <span class="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em] mb-3 block">${project.category}</span>
             <h3 class="text-2xl font-black mb-4 leading-tight">${project.title}</h3>
-            <p class="text-slate-500 text-sm mb-8 flex-grow leading-relaxed">${project.description}</p>
-            <a href="${project.link}" class="text-slate-900 font-bold flex items-center gap-3 group/link">
+            <p class="text-slate-500 text-sm mb-8 flex-grow leading-relaxed">${project.description || ''}</p>
+            <a href="${project.link || '#'}" class="text-slate-900 font-bold flex items-center gap-3 group/link">
               View Case Study <i class="fas fa-arrow-right text-[10px] transform group-hover/link:translate-x-2 transition-transform"></i>
             </a>
           </div>

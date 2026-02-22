@@ -4,33 +4,33 @@
  */
 
 async function initSiteComponents() {
-    try {
-        const response = await fetch('/data/config.json');
-        const config = await response.json();
+  try {
+    const response = await fetch('/data/config.json');
+    const config = await response.json();
 
-        // 1. Render Header
-        renderHeader(config);
+    // 1. Render Header
+    renderHeader(config);
 
-        // 2. Render Footer
-        renderFooter(config);
+    // 2. Render Footer
+    renderFooter(config);
 
-        // 3. Initialize dynamic logic (menu toggles, etc.)
-        initInteractions();
+    // 3. Initialize dynamic logic (menu toggles, etc.)
+    initInteractions();
 
-    } catch (e) {
-        console.error('Error initializing components:', e);
-    }
+  } catch (e) {
+    console.error('Error initializing components:', e);
+  }
 }
 
 function renderHeader(config) {
-    const headers = document.querySelectorAll('header');
-    if (!headers.length) return;
+  const headers = document.querySelectorAll('header');
+  if (!headers.length) return;
 
-    const menuHtml = config.menu.map(item =>
-        `<a href="${item.url}" class="nav-link text-slate-600 hover:text-slate-900 transition-colors py-2">${item.label}</a>`
-    ).join('');
+  const menuHtml = config.menu.map(item =>
+    `<a href="${item.url}" class="nav-link text-slate-600 hover:text-slate-900 transition-colors py-2">${item.label}</a>`
+  ).join('');
 
-    const headerContent = `
+  const headerContent = `
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20">
       <a href="/index.html" class="flex items-center gap-2 group">
         <img src="${config.brand.logo}" alt="${config.brand.name}" class="h-10 md:h-12 group-hover:scale-105 transition-transform">
@@ -81,17 +81,17 @@ function renderHeader(config) {
     </div>
   `;
 
-    headers.forEach(header => {
-        header.className = "sticky top-0 bg-white/80 backdrop-blur-xl border-b border-slate-200/50 z-50 transition-all duration-300";
-        header.innerHTML = headerContent;
-    });
+  headers.forEach(header => {
+    header.className = "sticky top-0 bg-white/80 backdrop-blur-xl border-b border-slate-200/50 z-50 transition-all duration-300";
+    header.innerHTML = headerContent;
+  });
 }
 
 function renderFooter(config) {
-    const footers = document.querySelectorAll('footer');
-    if (!footers.length) return;
+  const footers = document.querySelectorAll('footer');
+  if (!footers.length) return;
 
-    const footerContent = `
+  const footerContent = `
     <div class="max-w-7xl mx-auto px-4 py-16">
       <div class="grid md:grid-cols-4 gap-12">
         <div class="col-span-2">
@@ -122,84 +122,105 @@ function renderFooter(config) {
     </div>
   `;
 
-    footers.forEach(footer => {
-        footer.className = "bg-slate-900 border-t border-slate-800";
-        footer.innerHTML = footerContent;
-    });
+  footers.forEach(footer => {
+    footer.className = "bg-slate-900 border-t border-slate-800 dark-theme";
+    footer.innerHTML = footerContent;
+  });
 }
 
 function initInteractions() {
-    const openBtn = document.getElementById('mobile-menu-open');
-    const closeBtn = document.getElementById('mobile-menu-close');
-    const overlay = document.getElementById('mobile-overlay');
+  const openBtn = document.getElementById('mobile-menu-open');
+  const closeBtn = document.getElementById('mobile-menu-close');
+  const overlay = document.getElementById('mobile-overlay');
 
-    if (openBtn && overlay) {
-        openBtn.onclick = () => {
-            overlay.classList.remove('hidden');
-            setTimeout(() => overlay.style.transform = 'translateX(0)', 10);
-            document.body.style.overflow = 'hidden';
-        };
+  if (openBtn && overlay) {
+    openBtn.onclick = () => {
+      overlay.classList.remove('hidden');
+      setTimeout(() => overlay.style.transform = 'translateX(0)', 10);
+      document.body.style.overflow = 'hidden';
+    };
+  }
+
+  if (closeBtn && overlay) {
+    closeBtn.onclick = () => {
+      overlay.style.transform = 'translateX(100%)';
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+        document.body.style.overflow = '';
+      }, 300);
+    };
+  }
+
+  // Scroll transparency effect
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (header) {
+      if (window.scrollY > 20) {
+        header.classList.add('shadow-lg', 'py-1');
+      } else {
+        header.classList.remove('shadow-lg', 'py-1');
+      }
     }
+  });
 
-    if (closeBtn && overlay) {
-        closeBtn.onclick = () => {
-            overlay.style.transform = 'translateX(100%)';
-            setTimeout(() => {
-                overlay.classList.add('hidden');
-                document.body.style.overflow = '';
-            }, 300);
-        };
-    }
-
-    // Scroll transparency effect
-    window.addEventListener('scroll', () => {
-        const header = document.querySelector('header');
-        if (header) {
-            if (window.scrollY > 20) {
-                header.classList.add('shadow-lg', 'py-1');
-            } else {
-                header.classList.remove('shadow-lg', 'py-1');
-            }
-        }
+  // Reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+      }
     });
+  }, { threshold: 0.1 });
 
-    // Reveal animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-            }
-        });
-    }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // Services hover submenu
+  const nav = document.querySelector('nav');
+  const dropdown = document.getElementById('services-dropdown');
+  if (nav && dropdown) {
+    const servicesLink = Array.from(nav.querySelectorAll('a')).find(a => a.innerText.trim().toLowerCase() === 'services');
+    if (servicesLink) {
+      let hideTimer;
+      const show = () => {
+        clearTimeout(hideTimer);
+        dropdown.classList.remove('hidden');
+        setTimeout(() => dropdown.style.opacity = '1', 10);
+        align();
+      };
+      const hide = () => {
+        hideTimer = setTimeout(() => {
+          dropdown.classList.add('hidden');
+          dropdown.style.opacity = '0';
+        }, 150);
+      };
 
-    // Services hover submenu
-    const nav = document.querySelector('nav');
-    const dropdown = document.getElementById('services-dropdown');
-    if (nav && dropdown) {
-        const servicesLink = Array.from(nav.querySelectorAll('a')).find(a => a.textContent.trim().toLowerCase() === 'services');
-        if (servicesLink) {
-            let hideTimer;
-            const show = () => { clearTimeout(hideTimer); dropdown.classList.remove('hidden'); align(); };
-            const hide = () => { hideTimer = setTimeout(() => dropdown.classList.add('hidden'), 200); };
-            servicesLink.addEventListener('mouseenter', show);
-            servicesLink.addEventListener('mouseleave', hide);
-            dropdown.addEventListener('mouseenter', show);
-            dropdown.addEventListener('mouseleave', hide);
-            servicesLink.addEventListener('click', (e) => { // first click opens, second follows link
-                if (dropdown.classList.contains('hidden')) { e.preventDefault(); show(); }
-            });
-            const align = () => {
-                const rect = servicesLink.getBoundingClientRect();
-                const navRect = nav.getBoundingClientRect();
-                const left = rect.left - navRect.left;
-                dropdown.style.left = `${Math.max(0, left - 40)}px`;
-            };
-            window.addEventListener('resize', align);
-            align();
+      dropdown.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      dropdown.style.opacity = '0';
+
+      servicesLink.addEventListener('mouseenter', show);
+      servicesLink.addEventListener('mouseleave', hide);
+      dropdown.addEventListener('mouseenter', show);
+      dropdown.addEventListener('mouseleave', hide);
+
+      servicesLink.addEventListener('click', (e) => {
+        const isMobile = window.innerWidth < 768;
+        if (!isMobile && dropdown.classList.contains('hidden')) {
+          e.preventDefault();
+          show();
         }
+      });
+
+      const align = () => {
+        const rect = servicesLink.getBoundingClientRect();
+        const navRect = nav.getBoundingClientRect();
+        const left = rect.left - navRect.left;
+        // Center the large dropdown under the link if possible, or align left with offset
+        dropdown.style.left = `${Math.min(window.innerWidth - 540, Math.max(0, left - 180))}px`;
+      };
+      window.addEventListener('resize', align);
+      align();
     }
+  }
 }
 
 document.addEventListener('DOMContentLoaded', initSiteComponents);
