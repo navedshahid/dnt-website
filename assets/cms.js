@@ -18,6 +18,7 @@ async function loadCMSData() {
       `).join('');
       clientsContainer.innerHTML = logoHtml;
       if (clientsDupContainer) clientsDupContainer.innerHTML = logoHtml;
+      if (window.refreshReveal) window.refreshReveal();
     } catch (e) { console.error('Error loading clients:', e); }
   }
 
@@ -39,6 +40,7 @@ async function loadCMSData() {
           </div>
         </div>
       `).join('');
+      if (window.refreshReveal) window.refreshReveal();
     } catch (e) { console.error('Error loading testimonials:', e); }
   }
 
@@ -54,13 +56,14 @@ async function loadCMSData() {
       jobsContainer.innerHTML = jobs.map(job => `
         <div class="premium-card flex flex-col md:flex-row justify-between items-start md:items-center gap-6 reveal">
           <div>
-            <span class="text-xs font-black text-blue-600 uppercase tracking-widest mb-2 block">${job.type}</span>
-            <h3 class="text-2xl font-black mb-1">${job.title}</h3>
-            <div class="text-sm text-slate-400 font-bold">${job.location} | Remote Friendly</div>
+            <span class="text-xs font-black text-blue-600 uppercase tracking-widest mb-2 block">${job.type || 'Position'}</span>
+            <h3 class="text-2xl font-black mb-1">${job.title || 'Untitled Role'}</h3>
+            <div class="text-sm text-slate-400 font-bold">${job.location || 'Remote'} | Remote Friendly</div>
           </div>
-          <a href="/index.html?job=${job.id}#contact" class="btn-elite btn-elite-primary py-3 px-8 text-sm">Apply Now</a>
+          <a href="/index.html?job=${job.id || ''}#contact" class="btn-elite btn-elite-primary py-3 px-8 text-sm">Apply Now</a>
         </div>
       `).join('');
+      if (window.refreshReveal) window.refreshReveal();
     } catch (e) {
       console.error('Error loading jobs:', e);
       jobsContainer.innerHTML = '<div class="text-slate-400 text-center py-20">No active openings at this moment.</div>';
@@ -89,6 +92,7 @@ async function loadCMSData() {
           </div>
         </div>
       `).join('');
+      if (window.refreshReveal) window.refreshReveal();
     } catch (e) { console.error('Error loading portfolio:', e); }
   }
 }

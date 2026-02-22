@@ -172,7 +172,11 @@ function initInteractions() {
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  window.refreshReveal = () => {
+    document.querySelectorAll('.reveal:not(.active)').forEach(el => observer.observe(el));
+  };
+
+  window.refreshReveal();
 
   // Services hover submenu
   const nav = document.querySelector('nav');
