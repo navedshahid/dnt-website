@@ -1,0 +1,42 @@
+{
+    "brand": {
+        "name": "Digital Natives",
+        "logo": "/assets/logo-color.png",
+        "favicon": "/assets/favicon.png"
+    },
+    "menu": [
+        {
+            "label": "About",
+            "url": "/index.html#about"
+        },
+        {
+            "label": "Services",
+            "url": "/services.html"
+        },
+        {
+            "label": "Work",
+            "url": "/index.html#work"
+        },
+        {
+            "label": "Careers",
+            "url": "/careers.html"
+        },
+        {
+            "label": "Solutions",
+            "url": "/index.html#services"
+        },
+        {
+            "label": "Contact",
+            "url": "/index.html#contact"
+        }
+    ],
+    "social": {
+        "linkedin": "#",
+        "twitter": "#",
+        "facebook": "#"
+    },
+    "contact": {
+        "email": "hello@digitalnatives.ai",
+        "meeting_link": "https://calendly.com/hello-digitalnatives"
+    }
+}

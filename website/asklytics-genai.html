@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Asklytics | Natural Language Database Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/global.css">
+</head>
+
+<body class="bg-slate-900 text-white overflow-x-hidden dark-theme">
+
+    <header></header> <!-- Dynamically loaded -->
+
+    <!-- Hero Section -->
+    <section class="relative pt-40 pb-32 overflow-hidden">
+        <div
+            class="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2">
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
+            <div class="reveal">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center text-2xl font-black">A
+                    </div>
+                    <span class="text-xl font-black tracking-tight">Asklytics <span
+                            class="text-blue-500">GenAI</span></span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-black mb-8 leading-[1.1]">
+                    Stop Querying. <br><span class="heading-gradient text-glow">Start Asking.</span>
+                </h1>
+                <p class="text-xl text-slate-400 mb-10 leading-relaxed max-w-lg">
+                    Transform your enterprise data into instant insights. Ask your database complex questions in plain
+                    English and get visualized answers in seconds.
+                </p>
+                <div class="flex gap-6">
+                    <a href="/index.html#contact" class="btn-elite btn-elite-primary px-10 py-5">Request Early
+                        Access</a>
+                    <a href="#demo" class="btn-elite bg-slate-800 hover:bg-slate-700 px-10 py-5">See it in Action</a>
+                </div>
+            </div>
+
+            <div class="reveal lg:flex justify-end">
+                <div class="glass-card p-4 relative group">
+                    <div
+                        class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-600 rounded-3xl opacity-20 group-hover:opacity-40 transition-opacity">
+                    </div>
+                    <img src="https://placehold.co/1200x800/0a0f1d/f1f5f9?text=Asklytics+Dashboard" alt="Platform"
+                        class="relative rounded-2xl shadow-2xl scale-100 group-hover:scale-[1.02] transition-transform duration-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Features -->
+    <section class="py-32 bg-slate-800/50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="reveal">
+                    <i class="fas fa-database text-blue-500 text-3xl mb-6"></i>
+                    <h3 class="text-2xl font-black mb-4">Universal Adapter</h3>
+                    <p class="text-slate-400 leading-relaxed">Connects seamlessly to PostgreSQL, MySQL, SQL Server, and
+                        Snowflake. No ETL required.</p>
+                </div>
+                <div class="reveal" style="transition-delay: 100ms">
+                    <i class="fas fa-shield-alt text-blue-500 text-3xl mb-6"></i>
+                    <h3 class="text-2xl font-black mb-4">Zero-Trust Privacy</h3>
+                    <p class="text-slate-400 leading-relaxed">Your data stays in your cloud. We only process schema
+                        metadata for logic generation.</p>
+                </div>
+                <div class="reveal" style="transition-delay: 200ms">
+                    <i class="fas fa-magic text-blue-500 text-3xl mb-6"></i>
+                    <h3 class="text-2xl font-black mb-4">AI Auto-Viz</h3>
+                    <p class="text-slate-400 leading-relaxed">Instantly generates the most appropriate chart, table, or
+                        summary for your specific question.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Demo Visualization -->
+    <section id="demo" class="py-32 bg-white text-slate-900 reveal">
+        <div class="max-w-5xl mx-auto px-6 text-center mb-16">
+            <h2 class="text-4xl font-black mb-6">Conversational Intelligence.</h2>
+            <p class="text-slate-500 text-lg">Type your question, get your insights. High-level planning or deep-dive
+                analysis.</p>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="bg-slate-50 rounded-3xl border border-slate-200 shadow-2xl overflow-hidden p-8">
+                <div class="flex items-center gap-4 bg-white p-6 rounded-2xl border border-blue-100 mb-8 shadow-sm">
+                    <i class="fas fa-comment text-blue-600"></i>
+                    <span class="italic text-slate-700">"What was our net margin per region for Q3 compared to last
+                        year?"</span>
+                </div>
+                <div class="animate-pulse space-y-4">
+                    <div class="h-64 bg-white rounded-2xl border border-slate-100 flex items-center justify-center">
+                        <i class="fas fa-chart-bar text-4xl text-slate-200"></i>
+                    </div>
+                    <div class="h-4 bg-slate-200 rounded w-3/4"></div>
+                    <div class="h-4 bg-slate-200 rounded w-1/2"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer></footer> <!-- Dynamically loaded -->
+
+    <script src="/assets/site-components.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Digital Natives Technologies — Work Redefined</title>
+  <meta name="description"
+    content="Digital Natives builds AI-driven ERP, cloud, and web solutions. Odoo ERP, Dynamics 365 support, Microsoft 365, Azure cloud, and custom web & data platforms." />
+  <link rel="icon" href="/assets/favicon.png" type="image/png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* --- CSS FOR THE ENTIRE SITE --- */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, system-ui, sans-serif;
+    }
+
+    .fade-in-section {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .fade-in-section.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: .75rem;
+      padding: .75rem 1.5rem;
+      font-weight: 600;
+      transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #374151;
+      border: 1px solid #d1d5db;
+    }
+
+    .btn-secondary:hover {
+      background: #f9fafb;
+      transform: translateY(-2px);
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #f1f5f9;
+      border-radius: 1rem;
+      padding: 2.5rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #2563eb, #3b82f6);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      transform: translateY(-6px);
+      border-color: #e2e8f0;
+    }
+
+    .card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .heading span {
+      background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .ring-focus:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, .25);
+    }
+
+    /* Custom list for solution cards */
+    .feature-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .feature-list-item svg {
+      flex-shrink: 0;
+      width: 1.25rem;
+      height: 1.25rem;
+      color: #2563eb;
+      margin-top: 3px;
+    }
+
+    /* Enhanced header */
+    header {
+      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.95);
+    }
+
+    /* Enhanced hero section */
+    .hero-gradient {
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    }
+
+    /* Section dividers */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
+      margin: 4rem auto;
+      width: 80%;
+    }
+
+    /* Enhanced form styling */
+    .form-input {
+      border: 1px solid #e2e8f0;
+      border-radius: 0.75rem;
+      padding: 0.75rem 1rem;
+      transition: all 0.3s;
+      background: white;
+    }
+
+    .form-input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+
+    /* Enhanced client logos */
+    .client-logo {
+      filter: grayscale(100%);
+      opacity: 0.7;
+      transition: all 0.3s;
+    }
+
+    .client-logo:hover {
+      filter: grayscale(0%);
+      opacity: 1;
+    }
+
+    /* Chat Widget Styles */
+    #chat-bubble {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 50;
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      color: white;
+      border-radius: 50%;
+      padding: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.4);
+      transition: all 0.3s;
+    }
+
+    #chat-bubble:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(37, 99, 235, 0.5);
+    }
+
+    #chat-window {
+      position: fixed;
+      bottom: 6rem;
+      right: 1.5rem;
+      width: 22rem;
+      max-height: 65vh;
+      display: none;
+      flex-direction: column;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 1rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      z-index: 50;
+      overflow: hidden;
+    }
+
+    #chat-window.active {
+      display: flex;
+      animation: fadeIn .2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .chat-message {
+      padding: .75rem 1rem;
+      border-radius: .75rem;
+      margin-bottom: .5rem;
+      max-width: 80%;
+      word-break: break-word;
+      line-height: 1.5;
+      animation: messageSlide 0.3s ease-out;
+    }
+
+    @keyframes messageSlide {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .user-message {
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      color: white;
+      margin-left: auto;
+      white-space: pre-wrap;
+      border-bottom-right-radius: 0.25rem;
+    }
+
+    .ai-message {
+      background: #f8fafc;
+      color: #1e293b;
+      margin-right: auto;
+      white-space: pre-wrap;
+      border-bottom-left-radius: 0.25rem;
+      border: 1px solid #f1f5f9;
+    }
+
+    .ai-message p {
+      margin: .25rem 0;
+    }
+
+    .chat-link-btn {
+      display: inline-block;
+      margin-top: .35rem;
+      padding: .4rem .75rem;
+      border-radius: .5rem;
+      background: #2563eb;
+      color: white;
+      font-size: .8rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .chat-link-btn:hover {
+      background: #1d4ed8;
+    }
+
+    /* Mobile menu */
+    #mobile-menu {
+      transition: all 0.3s ease;
+      transform: translateX(100%);
+    }
+
+    #mobile-menu.active {
+      transform: translateX(0);
+    }
+
+    /* Service icons */
+    .service-icon {
+      background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+      border-radius: 1rem;
+      width: 4rem;
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Pillar card styles */
+    .pillar-card {
+      transition: all 0.3s ease;
+      border-left: 4px solid transparent;
+    }
+
+    .pillar-card:hover {
+      transform: translateY(-5px);
+      border-left-color: #2563eb;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Enhanced About Section Styles */
+    .mission-statement {
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      border-radius: 1.5rem;
+    }
+    
+    .value-card {
+      transition: all 0.3s ease;
+      border-top: 4px solid transparent;
+    }
+    
+    .value-card:hover {
+      transform: translateY(-5px);
+      border-top-color: #2563eb;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .stats-number {
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .team-member {
+      transition: all 0.3s ease;
+    }
+    
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+  </style>
+</head>
+
+<body class="bg-white text-slate-800">
+
+  <header class="sticky top-0 bg-white/90 border-b border-slate-200/80 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-16">
+      <a href="/" class="flex items-center gap-2">
+        <img src="/assets/logo-color.png" alt="Digital Natives" class="h-10 md:h-12"><span class="sr-only">Home</span>
+      </a>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a href="#about" class="text-slate-600 hover:text-slate-900 transition-colors duration-300">About Us</a>
+        <a href="#services" class="text-slate-600 hover:text-slate-900 transition-colors duration-300">Services</a>
+        <a href="#clients" class="text-slate-600 hover:text-slate-900 transition-colors duration-300">Clients</a>
+        <a href="#work" class="text-slate-600 hover:text-slate-900 transition-colors duration-300">Work</a>
+        <a href="#solutions" class="text-slate-600 hover:text-slate-900 transition-colors duration-300">Solutions</a>
+        <a href="#contact" class="text-slate-600 hover:text-slate-900 transition-colors duration-300">Contact</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="https://calendly.com/hello-digitalnatives" target="_blank" rel="noopener"
+          class="btn btn-primary hidden md:inline-flex">
+          <i class="fas fa-calendar-alt mr-2"></i>Book a Meeting
+        </a>
+        <button id="menu-toggle"
+          class="md:hidden inline-flex items-center justify-center rounded-lg border border-slate-300 px-3 py-2 transition-colors duration-300 hover:bg-slate-50"
+          aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed inset-0 bg-white z-50 md:hidden transition-transform duration-300">
+    <div class="flex flex-col h-full p-6">
+      <div class="flex justify-between items-center mb-8">
+        <img src="/assets/logo-color.png" alt="Digital Natives" class="h-10">
+        <button id="close-menu" class="text-slate-500 p-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-6 text-lg">
+        <a href="#about" class="text-slate-700 hover:text-slate-900 py-2 border-b border-slate-100">About Us</a>
+        <a href="#services" class="text-slate-700 hover:text-slate-900 py-2 border-b border-slate-100">Services</a>
+        <a href="#clients" class="text-slate-700 hover:text-slate-900 py-2 border-b border-slate-100">Clients</a>
+        <a href="#work" class="text-slate-700 hover:text-slate-900 py-2 border-b border-slate-100">Work</a>
+        <a href="#solutions" class="text-slate-700 hover:text-slate-900 py-2 border-b border-slate-100">Solutions</a>
+        <a href="#contact" class="text-slate-700 hover:text-slate-900 py-2 border-b border-slate-100">Contact</a>
+      </nav>
+      <div class="mt-auto pt-6">
+        <a href="https://calendly.com/hello-digitalnatives" target="_blank" rel="noopener"
+          class="btn btn-primary w-full justify-center">
+          <i class="fas fa-calendar-alt mr-2"></i>Book a Meeting
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <section id="hero"
+    class="relative min-h-screen flex items-center justify-center text-center hero-gradient overflow-hidden">
+    <div class="max-w-3xl mx-auto px-4 relative z-10">
+      <h1 class="text-4xl md:text-6xl font-extrabold heading mb-6">Work <span>Redefined</span> with Digital Natives</h1>
+      <p class="text-lg md:text-xl text-slate-600 mb-8 max-w-2xl mx-auto">We deliver Odoo ERP, Dynamics 365 support,
+        AI-driven business intelligence, custom web apps and Microsoft Cloud solutions to transform your business.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#contact" class="btn btn-primary">
+          <i class="fas fa-comments mr-2"></i>Let's Start a Conversation
+        </a>
+        <a href="#services" class="btn bg-white text-slate-800 border border-slate-300 hover:bg-slate-50">
+          <i class="fas fa-chart-line mr-2"></i>Our Services
+        </a>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
+  </section>
+
+  <!-- Enhanced About Section -->
+  <section id="about" class="py-20 bg-white fade-in-section">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Mission Statement -->
+      <div class="mission-statement p-8 md:p-12 mb-16 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Your Partner in <span class="text-blue-600">AI-Driven Transformation</span></h2>
+        <p class="text-lg text-slate-600 max-w-3xl mx-auto">We unite deep industry knowledge with cutting-edge AI to solve your toughest challenges. With a foundation in retail, finance, and software engineering, we deliver practical solutions that drive real growth.</p>
+      </div>
+      
+      <!-- Stats Section -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+        <div class="text-center">
+          <div class="stats-number text-3xl md:text-4xl font-bold mb-2">10+</div>
+          <p class="text-slate-600">Years Experience</p>
+        </div>
+        <div class="text-center">
+          <div class="stats-number text-3xl md:text-4xl font-bold mb-2">50+</div>
+          <p class="text-slate-600">Projects Delivered</p>
+        </div>
+        <div class="text-center">
+          <div class="stats-number text-3xl md:text-4xl font-bold mb-2">15+</div>
+          <p class="text-slate-600">Global Clients</p>
+        </div>
+        <div class="text-center">
+          <div class="stats-number text-3xl md:text-4xl font-bold mb-2">100%</div>
+          <p class="text-slate-600">Client Satisfaction</p>
+        </div>
+      </div>
+      
+      <!-- Values Section -->
+      <div class="mb-16">
+        <h2 class="text-3xl font-bold text-center mb-12">Our Core Values</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="value-card bg-white p-6 rounded-xl border border-slate-100 shadow-sm text-center">
+            <div class="flex-shrink-0 w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-bullseye text-blue-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3 text-slate-800">Client Success First</h3>
+            <p class="text-slate-600">We measure our success by the value we deliver to our clients. Your goals become our mission.</p>
+          </div>
+          
+          <div class="value-card bg-white p-6 rounded-xl border border-slate-100 shadow-sm text-center">
+            <div class="flex-shrink-0 w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-lightbulb text-blue-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3 text-slate-800">Innovation Driven</h3>
+            <p class="text-slate-600">We continuously explore emerging technologies to deliver cutting-edge solutions that provide competitive advantages.</p>
+          </div>
+          
+          <div class="value-card bg-white p-6 rounded-xl border border-slate-100 shadow-sm text-center">
+            <div class="flex-shrink-0 w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-handshake text-blue-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3 text-slate-800">Partnership Approach</h3>
+            <p class="text-slate-600">We build long-term relationships based on trust, transparency, and mutual success.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Our Approach Section -->
+      <div class="grid lg:grid-cols-2 gap-16 items-center mb-16">
+        <div>
+          <h2 class="text-3xl font-bold mb-6">Our Strategic Approach</h2>
+          <p class="text-slate-600 mb-6">Our methodology combines industry expertise with technological innovation to deliver transformative solutions.</p>
+          
+          <div class="space-y-6">
+            <div class="flex items-start">
+              <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4 mt-1">
+                <span class="text-blue-600 font-bold">1</span>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold mb-2 text-slate-800">Discovery & Analysis</h4>
+                <p class="text-slate-600">We deeply understand your business challenges, goals, and technical environment.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4 mt-1">
+                <span class="text-blue-600 font-bold">2</span>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold mb-2 text-slate-800">Solution Design</h4>
+                <p class="text-slate-600">We architect tailored solutions that align with your business objectives and technical requirements.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4 mt-1">
+                <span class="text-blue-600 font-bold">3</span>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold mb-2 text-slate-800">Agile Implementation</h4>
+                <p class="text-slate-600">We execute with precision using agile methodologies to ensure timely delivery and continuous improvement.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start">
+              <div class="flex-shrink-0 w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4 mt-1">
+                <span class="text-blue-600 font-bold">4</span>
+              </div>
+              <div>
+                <h4 class="text-lg font-semibold mb-2 text-slate-800">Continuous Optimization</h4>
+                <p class="text-slate-600">We provide ongoing support and optimization to ensure your solutions evolve with your business needs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Visualization Column -->
+        <div class="relative">
+          <!-- Abstract Visualization Container -->
+          <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 h-full flex items-center justify-center">
+            <!-- Abstract AI Transformation SVG -->
+            <div class="w-full max-w-md">
+              <svg viewBox="0 0 400 320" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+                <!-- Background Elements -->
+                <circle cx="200" cy="160" r="140" fill="white" opacity="0.8"/>
+                
+                <!-- Central AI Core -->
+                <g>
+                  <circle cx="200" cy="160" r="60" fill="#2563eb" opacity="0.1"/>
+                  <path d="M180,140 Q200,120 220,140 Q240,160 220,180 Q200,200 180,180 Q160,160 180,140" 
+                        fill="#3b82f6" opacity="0.8" stroke="#1e40af" stroke-width="2"/>
+                  
+                  <!-- AI Core Details -->
+                  <circle cx="190" cy="150" r="4" fill="white"/>
+                  <circle cx="200" cy="160" r="4" fill="white"/>
+                  <circle cx="210" cy="170" r="4" fill="white"/>
+                </g>
+                
+                <!-- Data Flow Lines -->
+                <g stroke="#60a5fa" stroke-width="2" fill="none" opacity="0.7">
+                  <!-- Top Flow -->
+                  <path d="M200,100 L200,80" stroke-dasharray="4,4"/>
+                  <path d="M200,80 Q180,60 160,80" stroke-dasharray="4,4"/>
+                  <path d="M200,80 Q220,60 240,80" stroke-dasharray="4,4"/>
+                  
+                  <!-- Bottom Flow -->
+                  <path d="M200,220 L200,240" stroke-dasharray="4,4"/>
+                  <path d="M200,240 Q180,260 160,240" stroke-dasharray="4,4"/>
+                  <path d="M200,240 Q220,260 240,240" stroke-dasharray="4,4"/>
+                  
+                  <!-- Left Flow -->
+                  <path d="M140,160 L120,160" stroke-dasharray="4,4"/>
+                  <path d="M120,160 Q100,140 120,120" stroke-dasharray="4,4"/>
+                  <path d="M120,160 Q100,180 120,200" stroke-dasharray="4,4"/>
+                  
+                  <!-- Right Flow -->
+                  <path d="M260,160 L280,160" stroke-dasharray="4,4"/>
+                  <path d="M280,160 Q300,140 280,120" stroke-dasharray="4,4"/>
+                  <path d="M280,160 Q300,180 280,200" stroke-dasharray="4,4"/>
+                </g>
+                
+                <!-- Industry Nodes -->
+                <g>
+                  <!-- Retail Node -->
+                  <g>
+                    <circle cx="120" cy="100" r="20" fill="#1e40af" opacity="0.9"/>
+                    <text x="120" y="105" text-anchor="middle" fill="white" font-size="10" font-weight="bold">RETAIL</text>
+                  </g>
+                  
+                  <!-- Finance Node -->
+                  <g>
+                    <circle cx="120" cy="220" r="20" fill="#1e40af" opacity="0.9"/>
+                    <text x="120" y="225" text-anchor="middle" fill="white" font-size="10" font-weight="bold">FINANCE</text>
+                  </g>
+                  
+                  <!-- Technology Node -->
+                  <g>
+                    <circle cx="280" cy="100" r="20" fill="#1e40af" opacity="0.9"/>
+                    <text x="280" y="105" text-anchor="middle" fill="white" font-size="10" font-weight="bold">TECH</text>
+                  </g>
+                  
+                  <!-- Innovation Node -->
+                  <g>
+                    <circle cx="280" cy="220" r="20" fill="#1e40af" opacity="0.9"/>
+                    <text x="280" y="225" text-anchor="middle" fill="white" font-size="10" font-weight="bold">AI</text>
+                  </g>
+                </g>
+                
+                <!-- Connection Lines from AI Core to Nodes -->
+                <g stroke="#2563eb" stroke-width="1.5" fill="none" opacity="0.6">
+                  <path d="M180,140 L140,110"/>
+                  <path d="M180,180 L140,210"/>
+                  <path d="M220,140 L260,110"/>
+                  <path d="M220,180 L260,210"/>
+                </g>
+                
+                <!-- Floating Data Points -->
+                <g>
+                  <circle cx="150" cy="70" r="3" fill="#60a5fa"/>
+                  <circle cx="250" cy="70" r="3" fill="#60a5fa"/>
+                  <circle cx="300" cy="130" r="3" fill="#60a5fa"/>
+                  <circle cx="320" cy="170" r="3" fill="#60a5fa"/>
+                  <circle cx="250" cy="230" r="3" fill="#60a5fa"/>
+                  <circle cx="150" cy="230" r="3" fill="#60a5fa"/>
+                  <circle cx="100" cy="170" r="3" fill="#60a5fa"/>
+                  <circle cx="80" cy="130" r="3" fill="#60a5fa"/>
+                </g>
+              </svg>
+              
+              <!-- Visualization Description -->
+              <div class="mt-6 text-center">
+                <h3 class="font-semibold text-slate-800 mb-2">Connecting Industries Through AI</h3>
+                <p class="text-slate-600 text-sm">Our AI-powered solutions integrate retail, finance, and technology to drive innovation and growth.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- CTA Section -->
+      <div class="text-center">
+        <h2 class="text-3xl font-bold mb-6">Ready to Transform Your Business?</h2>
+        <p class="text-slate-600 mb-8 max-w-2xl mx-auto">Let's discuss how our AI-driven solutions can help you achieve your business objectives.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#contact" class="btn btn-primary">
+            <i class="fas fa-comments mr-2"></i>Start Your Transformation
+          </a>
+          <a href="#solutions" class="btn btn-secondary">
+            <i class="fas fa-lightbulb mr-2"></i>Explore Our Solutions
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Rest of your existing sections (services, clients, work, solutions, contact) remain the same -->
+  <section id="services" class="py-20 bg-slate-50 fade-in-section">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-bold mb-4">Our Core Services</h2>
+      <p class="text-slate-600 mb-12 max-w-2xl mx-auto">Comprehensive technology solutions designed to drive efficiency,
+        innovation, and growth for your business.</p>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="card">
+          <div class="service-icon mx-auto">
+            <i class="fas fa-cogs text-blue-500 text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Odoo ERP</h3>
+          <p class="text-slate-600 mb-4">Implementation, customization, support, and licensing as an Odoo Learning
+            Partner.</p>
+          <a href="#contact" class="btn btn-primary w-full justify-center">Learn More</a>
+        </div>
+        <div class="card">
+          <div class="service-icon mx-auto">
+            <i class="fas fa-chart-bar text-blue-500 text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Dynamics 365 Support</h3>
+          <p class="text-slate-600 mb-4">Finance, Supply Chain & Commerce ERP support with SLAs and integrations.</p>
+          <a href="#contact" class="btn btn-primary w-full justify-center">Learn More</a>
+        </div>
+        <div class="card">
+          <div class="service-icon mx-auto">
+            <i class="fas fa-cloud text-blue-500 text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Cloud Services</h3>
+          <p class="text-slate-600 mb-4">Microsoft 365, Azure migration, modernization, and cloud security optimization.
+          </p>
+          <a href="#contact" class="btn btn-primary w-full justify-center">Learn More</a>
+        </div>
+        <div class="card">
+          <div class="service-icon mx-auto">
+            <i class="fas fa-robot text-blue-500 text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">AI & GPT-Powered BI</h3>
+          <p class="text-slate-600 mb-4">AI assistants and natural-language data access for faster, smarter
+            decision-making.</p>
+          <a href="#contact" class="btn btn-primary w-full justify-center">Learn More</a>
+        </div>
+        <div class="card">
+          <div class="service-icon mx-auto">
+            <i class="fas fa-code text-blue-500 text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Custom Web & Data Platforms</h3>
+          <p class="text-slate-600 mb-4">Tailored web apps, POS/e-commerce integrations, and enterprise-grade data
+            warehousing.</p>
+          <a href="#contact" class="btn btn-primary w-full justify-center">Learn More</a>
+        </div>
+        <div class="card">
+          <div class="service-icon mx-auto">
+            <i class="fas fa-headset text-blue-500 text-xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-2">Consulting & Strategy</h3>
+          <p class="text-slate-600 mb-4">Technology roadmap planning, digital transformation strategy, and IT advisory
+            services.</p>
+          <a href="#contact" class="btn btn-primary w-full justify-center">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rest of your existing code continues... -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Intersection Observer for fade-in animations
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) e.target.classList.add('is-visible');
+        });
+      }, {
+        threshold: 0.1
+      });
+      document.querySelectorAll('.fade-in-section').forEach(el => observer.observe(el));
+
+      // Mobile menu functionality
+      const menuToggle = document.getElementById('menu-toggle');
+      const closeMenu = document.getElementById('close-menu');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.add('active');
+      });
+
+      closeMenu.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('active');
+        });
+      });
+
+      // Chat functionality
+      const chatBubble = document.getElementById('chat-bubble');
+      const chatWindow = document.getElementById('chat-window');
+      const closeChat = document.getElementById('close-chat');
+      const chatForm = document.getElementById('chat-form');
+      const chatInput = document.getElementById('chat-input');
+      const chatMessages = document.getElementById('chat-messages');
+      let history = [];
+
+      const toggleChat = () => {
+        chatWindow.classList.toggle('active');
+        if (chatWindow.classList.contains('active')) {
+          chatInput.focus();
+        }
+      };
+
+      chatBubble.addEventListener('click', toggleChat);
+      closeChat.addEventListener('click', toggleChat);
+
+      const escapeHTML = (str) => str.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+
+      const prettyHost = (url) => {
+        try {
+          const u = new URL(url);
+          return (u.hostname || 'Open Link').replace(/^www\./, '');
+        } catch {
+          return 'Open Link';
+        }
+      };
+
+      const renderAI = (text) => {
+        if (!text) return '';
+        let html = text.replace(/\[(.*?)\]\((https?:[^)\s]+)\)/g, (m, label, href) => `<a href="${href}" target="_blank" class="chat-link-btn">${label}</a>`);
+        html = html.replace(/(https?:\/\/[^\s)]+)(?![^<]*>)/g, (m) => `<a href="${m}" target="_blank" class="chat-link-btn">${prettyHost(m)}</a>`);
+        html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1<\/strong>').replace(/\*(.+?)\*/g, '<em>$1<\/em>');
+        const parts = html.split(/\n\s*\n/).map(p => `<p>${p.replaceAll('\n', '<br>')}</p>`);
+        return parts.join('');
+      };
+
+      const addUserMessage = (text) => {
+        const div = document.createElement('div');
+        div.className = 'chat-message user-message';
+        div.textContent = text;
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      };
+
+      const addAIMessage = (html) => {
+        const div = document.createElement('div');
+        div.className = 'chat-message ai-message';
+        div.innerHTML = html;
+        chatMessages.appendChild(div);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      };
+
+      chatForm.addEventListener('submit', async e => {
+        e.preventDefault();
+        const userMsg = chatInput.value.trim();
+        if (!userMsg) return;
+
+        addUserMessage(userMsg);
+        history.push({
+          role: 'user',
+          parts: [{
+            text: userMsg
+          }]
+        });
+
+        chatInput.value = '';
+        chatInput.disabled = true;
+
+        try {
+          const res = await fetch('https://chat.digitalnatives.work/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              history
+            })
+          });
+
+          const data = await res.json();
+          const aiRaw = (data && data.text) || '';
+          const aiHtml = renderAI(aiRaw);
+          addAIMessage(aiHtml);
+
+          history.push({
+            role: 'model',
+            parts: [{
+              text: aiRaw
+            }]
+          });
+        } catch (err) {
+          addAIMessage('<p>Sorry, I had trouble connecting. Please try again.</p>');
+        } finally {
+          chatInput.disabled = false;
+          chatInput.focus();
+        }
+      });
+
+      // Contact form submission
+      const contactForm = document.getElementById('contact-form');
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        // In a real implementation, you would send the form data to a server
+        alert('Thank you for your message! We will get back to you soon.');
+        contactForm.reset();
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+[
+    {
+        "name": "John Doe",
+        "designation": "CEO, Tech Corp",
+        "quote": "Digital Natives transformed our legacy systems into a modern AI-driven platform. Highly recommended!"
+    },
+    {
+        "name": "Jane Smith",
+        "designation": "Operations Manager, Global Logistics",
+        "quote": "The Odoo implementation was seamless. We've seen a 30% increase in efficiency within 3 months."
+    }
+]

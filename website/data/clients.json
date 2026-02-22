@@ -1,0 +1,22 @@
+[
+  {
+    "name": "O'Neill & Brennan",
+    "logo": "/assets/clients/oandb_logo.svg",
+    "url": "https://www.oneillandbrennan.com/"
+  },
+  {
+    "name": "Cloud Tribe",
+    "logo": "/assets/clients/CT_logo.png",
+    "url": "https://cloud-tribe.com/"
+  },
+  {
+    "name": "Alfatah",
+    "logo": "/assets/clients/alfatah_logo.png",
+    "url": "https://alfatah.pk/"
+  },
+  {
+    "name": "Bookkaru",
+    "logo": "/assets/clients/bookkaru.png",
+    "url": "https://bookkaru.com/"
+  }
+]

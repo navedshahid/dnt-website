@@ -1,0 +1,18 @@
+[
+    {
+        "id": "1",
+        "title": "Asklytics AI",
+        "category": "AI Development",
+        "image": "https://placehold.co/960x640/0a0f1d/f1f5f9?text=Asklytics+AI",
+        "description": "Natural language query engine for enterprise databases.",
+        "link": "/asklytics-genai.html"
+    },
+    {
+        "id": "2",
+        "title": "Retail ERP Sync",
+        "category": "Software Development",
+        "image": "https://placehold.co/960x640/0a0f1d/f1f5f9?text=Retail+ERP+Sync",
+        "description": "Real-time synchronization between Odoo and Microsoft Dynamics.",
+        "link": "#"
+    }
+]

@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Elite Admin CMS | Digital Natives</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/assets/global.css">
+    <style>
+        .nav-btn-admin.active {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #64748b;
+            margin-bottom: 0.25rem;
+        }
+
+        .form-input-admin {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .form-input-admin:focus {
+            border-color: #2563eb;
+            ring: 2px solid #eff6ff;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body class="bg-[#fcfdfe] text-slate-800">
+    <div id="login-screen" class="min-h-screen flex items-center justify-center p-6 bg-slate-900">
+        <div class="glass-card w-full max-w-md p-10 text-center">
+            <img src="/assets/logo-color.png" alt="Logo" class="h-16 mx-auto mb-8 animate-float">
+            <h1 class="text-3xl font-extrabold text-white mb-2">Command Center</h1>
+            <p class="text-slate-400 mb-8 text-sm">Enter the encrypted secret to access site controls.</p>
+            <input type="password" id="access-code"
+                class="w-full p-4 bg-slate-800 border-slate-700 text-white rounded-xl mb-4 focus:ring-2 ring-accent outline-none"
+                placeholder="Access Code">
+            <button onclick="attemptLogin(event)" class="btn-elite btn-elite-primary w-full py-4 text-base">Enter
+                Dashboard</button>
+        </div>
+    </div>
+
+    <div id="dashboard-screen" class="hidden min-h-screen flex flex-col">
+        <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <img src="/assets/logo-color.png" alt="Logo" class="h-10">
+                    <span class="h-8 w-px bg-slate-200"></span>
+                    <h2 class="font-bold text-slate-500 uppercase tracking-tighter text-xs">Site Administration</h2>
+                </div>
+                <div class="flex gap-4">
+                    <a href="/" target="_blank"
+                        class="text-sm font-bold text-slate-400 hover:text-accent transition-colors">Visit Site <i
+                            class="fas fa-external-link-alt ml-1"></i></a>
+                    <button onclick="location.reload()"
+                        class="text-sm font-bold text-red-400 hover:text-red-500 transition-colors">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="flex-grow flex max-w-7xl mx-auto w-full">
+            <!-- Sidebar -->
+            <aside class="w-72 border-r border-slate-200 p-8 space-y-2 hidden md:block">
+                <p class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Master Controls</p>
+                <button onclick="tab('config')" id="tab-config"
+                    class="nav-btn-admin w-full text-left p-4 rounded-xl flex items-center gap-3 font-bold transition-all"><i
+                        class="fas fa-cog"></i> Global Config</button>
+                <button onclick="tab('portfolio')" id="tab-portfolio"
+                    class="nav-btn-admin w-full text-left p-4 rounded-xl flex items-center gap-3 font-bold transition-all"><i
+                        class="fas fa-th-large"></i> Projects</button>
+                <button onclick="tab('clients')" id="tab-clients"
+                    class="nav-btn-admin w-full text-left p-4 rounded-xl flex items-center gap-3 font-bold transition-all"><i
+                        class="fas fa-users"></i> Clients</button>
+                <button onclick="tab('testimonials')" id="tab-testimonials"
+                    class="nav-btn-admin w-full text-left p-4 rounded-xl flex items-center gap-3 font-bold transition-all"><i
+                        class="fas fa-comment-dots"></i> Testimonials</button>
+                <button onclick="tab('jobs')" id="tab-jobs"
+                    class="nav-btn-admin w-full text-left p-4 rounded-xl flex items-center gap-3 font-bold transition-all"><i
+                        class="fas fa-briefcase"></i> Careers</button>
+            </aside>
+
+            <!-- Content Area -->
+            <main class="flex-grow p-10 bg-[#f8fafc]">
+                <div class="flex justify-between items-center mb-10">
+                    <div>
+                        <h3 id="current-title" class="text-3xl font-black text-slate-900 tracking-tight">Configuration
+                        </h3>
+                        <p id="current-desc" class="text-slate-500 text-sm">Update your brand identity and site-wide
+                            settings.</p>
+                    </div>
+                    <button id="add-btn" onclick="addItem()"
+                        class="btn-elite btn-elite-primary py-3 px-6 text-sm hidden">
+                        <i class="fas fa-plus mr-2"></i> Add New Entry
+                    </button>
+                </div>
+
+                <div id="editor-area" class="space-y-6">
+                    <!-- Forms load here -->
+                </div>
+
+                <div class="mt-12 pt-8 border-t border-slate-200 flex justify-end gap-4">
+                    <button onclick="downloadBackup()" class="btn-elite bg-slate-200 text-slate-700 py-4 px-8 group">
+                        <i class="fas fa-download mr-2"></i> Local Backup
+                    </button>
+                    <button onclick="save(event)" class="btn-elite btn-elite-primary py-4 px-12 group">
+                        Publish Changes <i
+                            class="fas fa-paper-plane ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        let currentType = 'config';
+        let currentData = {};
+        let secret = '';
+
+        async function attemptLogin(ev) {
+            const codeEl = document.getElementById('access-code');
+            const btn = ev?.currentTarget;
+            const oldText = btn ? btn.innerText : '';
+
+            secret = codeEl.value;
+            if (!secret) return;
+
+            if (btn) {
+                btn.disabled = true;
+                btn.innerText = "Verifying...";
+            }
+
+            try {
+                // Verify secret with server
+                const resp = await fetch(`/api/data?check=true`, {
+                    headers: { 'CMS_SECRET': secret }
+                });
+
+                if (resp.status === 404) {
+                    throw new Error("Authentication API not found (404). This usually means your Cloudflare Functions are not active. Make sure the 'functions' folder is at the root of your project.");
+                }
+
+                if (!resp.ok) {
+                    throw new Error(`Server error: ${resp.status} ${resp.statusText}`);
+                }
+
+                const contentType = resp.headers.get("content-type");
+                if (!contentType || !contentType.includes("application/json")) {
+                    console.log("Response was not JSON:", await resp.text());
+                    throw new Error("The API returned an HTML page instead of JSON. This usually means the Cloudflare Function is not active or the URL is incorrect (404).");
+                }
+
+                try {
+                    const res = await resp.json();
+                    if (res.valid) {
+                        document.getElementById('login-screen').classList.add('hidden');
+                        document.getElementById('dashboard-screen').classList.remove('hidden');
+                        tab('config');
+                    } else {
+                        alert('Invalid Access Code. \n\nNote: If you just changed your secret in Cloudflare, you MUST trigger a NEW DEPLOYMENT for it to take effect.');
+                    }
+                } catch (parseError) {
+                    console.error("JSON Parse Error:", parseError);
+                    throw new Error("Failed to parse server response. The API might be misconfigured.");
+                }
+            } catch (e) {
+                console.error(e);
+                alert(`Login Error: ${e.message}\n\nTroubleshooting:\n1. Ensure the "functions" folder is at the root of your project.\n2. Ensure you have REDEPLOYED after changing CMS_SECRET.`);
+            } finally {
+                if (btn) {
+                    btn.disabled = false;
+                    btn.innerText = oldText;
+                }
+            }
+        }
+
+        async function tab(type) {
+            currentType = type;
+            document.querySelectorAll('.nav-btn-admin').forEach(b => b.classList.remove('active'));
+            const tabBtn = document.getElementById(`tab-${type}`);
+            if (tabBtn) tabBtn.classList.add('active');
+
+            const config = {
+                config: { title: "Global Config", desc: "Manage logo, brand, and menu links.", btn: false },
+                portfolio: { title: "Projects", desc: "Showcase your elite work and case studies.", btn: true },
+                clients: { title: "Clients", desc: "Update your partner network logos and links.", btn: true },
+                testimonials: { title: "Client Voice", desc: "Manage social proof and feedback.", btn: true },
+                jobs: { title: "Careers", desc: "Manage open roles and recruitment.", btn: true }
+            };
+
+            document.getElementById('current-title').innerText = config[type].title;
+            document.getElementById('current-desc').innerText = config[type].desc;
+            document.getElementById('add-btn').classList.toggle('hidden', !config[type].btn);
+
+            try {
+                const resp = await fetch(`/data/${type}.json`);
+                currentData = await resp.json();
+                render();
+            } catch (e) {
+                console.error('Error fetching data:', e);
+            }
+        }
+
+        function render() {
+            const area = document.getElementById('editor-area');
+            area.innerHTML = '';
+
+            if (currentType === 'config') {
+                renderConfig(currentData);
+            } else {
+                renderList(currentData);
+            }
+        }
+
+        function renderConfig(data) {
+            const area = document.getElementById('editor-area');
+            if (!data || !data.brand) return;
+
+            // Brand Info
+            let html = `
+        <div class="premium-card mb-8">
+          <h4 class="font-bold mb-6 text-slate-400 text-xs uppercase tracking-widest">Brand Identity</h4>
+          <div class="grid grid-cols-2 gap-6">
+            <div class="form-group">
+              <label>Brand Name</label>
+              <input type="text" value="${data.brand.name}" onchange="currentData.brand.name = this.value" class="form-input-admin">
+            </div>
+            <div class="form-group">
+              <label>Logo Path</label>
+              <input type="text" value="${data.brand.logo}" onchange="currentData.brand.logo = this.value" class="form-input-admin">
+            </div>
+          </div>
+        </div>
+
+        <div class="premium-card">
+          <h4 class="font-bold mb-6 text-slate-400 text-xs uppercase tracking-widest flex justify-between">
+            Navigation Menu
+            <button onclick="addMenu()" class="text-accent underline text-[10px]">Add Item</button>
+          </h4>
+          <div id="menu-items" class="space-y-4">
+            ${data.menu.map((m, idx) => `
+              <div class="flex gap-4 items-end bg-slate-50 p-4 rounded-lg">
+                <div class="flex-grow grid grid-cols-2 gap-4">
+                  <div class="form-group">
+                    <label>Label</label>
+                    <input type="text" value="${m.label}" onchange="currentData.menu[${idx}].label = this.value" class="form-input-admin">
+                  </div>
+                  <div class="form-group">
+                    <label>URL / Anchor</label>
+                    <input type="text" value="${m.url}" onchange="currentData.menu[${idx}].url = this.value" class="form-input-admin">
+                  </div>
+                </div>
+                <button onclick="removeMenu(${idx})" class="text-red-300 hover:text-red-500 mb-2 px-2"><i class="fas fa-trash"></i></button>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+            area.innerHTML = html;
+        }
+
+        function renderList(data) {
+            const area = document.getElementById('editor-area');
+            if (!Array.isArray(data)) return;
+
+            area.innerHTML = data.map((item, idx) => {
+                let fields = '';
+                for (let key in item) {
+                    if (key === 'id') continue;
+                    fields += `
+            <div class="form-group">
+              <label>${key}</label>
+              ${key === 'description' || key === 'quote' ?
+                            `<textarea onchange="currentData[${idx}].${key} = this.value" class="form-input-admin min-h-[100px]">${item[key] || ''}</textarea>` :
+                            `<input type="text" value="${item[key] || ''}" onchange="currentData[${idx}].${key} = this.value" class="form-input-admin">`
+                        }
+            </div>
+          `;
+                }
+
+                return `
+          <div class="premium-card relative group">
+            <button onclick="remove(${idx})" class="absolute top-6 right-6 text-slate-300 hover:text-red-500 transition-colors"><i class="fas fa-trash-alt"></i></button>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+              ${fields}
+            </div>
+          </div>
+        `;
+            }).join('');
+        }
+
+        function addMenu() {
+            currentData.menu.push({ label: "New Item", url: "#" });
+            render();
+        }
+
+        function removeMenu(idx) {
+            currentData.menu.splice(idx, 1);
+            render();
+        }
+
+        function addItem() {
+            const item = currentData.length > 0 ? { ...currentData[0] } : {};
+            for (let k in item) item[k] = "";
+            if (item.id) item.id = Date.now().toString();
+            currentData.push(item);
+            render();
+        }
+
+        function remove(idx) {
+            if (confirm('Delete this entry?')) {
+                currentData.splice(idx, 1);
+                render();
+            }
+        }
+
+        function downloadBackup() {
+            const blob = new Blob([JSON.stringify(currentData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `${currentType}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        async function save(ev) {
+            const btn = ev?.currentTarget;
+            const oldText = btn ? btn.innerHTML : '';
+            if (btn) {
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Publishing...';
+                btn.disabled = true;
+            }
+
+            try {
+                const resp = await fetch(`/api/data?type=${currentType}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'CMS_SECRET': secret },
+                    body: JSON.stringify(currentData)
+                });
+
+                let res = {};
+                const contentType = resp.headers.get("content-type");
+                if (contentType && contentType.indexOf("application/json") !== -1) {
+                    res = await resp.json();
+                }
+
+                if (resp.status === 404) {
+                    throw new Error("Worker API not found (404). Check your Cloudflare Functions deployment.");
+                }
+
+                if (resp.status === 401) {
+                    throw new Error(res.error || 'Unauthorized Access Code');
+                }
+
+                if (resp.ok) {
+                    alert('Data processed successfully!\n\nNote: Live persistence requires Cloudflare KV integration. For now, please use the "Local Backup" button to download the JSON and update your project files.');
+                } else {
+                    throw new Error(res.error || `Server returned ${resp.status}`);
+                }
+            } catch (e) {
+                alert('CMS Error: ' + e.message);
+                console.error(e);
+            } finally {
+                if (btn) {
+                    btn.innerHTML = oldText;
+                    btn.disabled = false;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
