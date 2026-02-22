@@ -106,10 +106,10 @@ h4 {
 }
 #clients-list img,
 #clients-list-dup img {
-  height: 42px;
+  height: 64px;
   object-fit: contain;
   filter: grayscale(1);
-  opacity: 0.8;
+  opacity: 0.9;
   transition: all 0.3s ease;
 }
 #clients-list img:hover,
@@ -135,6 +135,26 @@ h4 {
   transform: translateY(-6px);
   box-shadow: 0 20px 40px -18px rgba(0,0,0,0.15);
   opacity: 1;
+}
+
+/* Testimonials horizontal scroller */
+#testimonials-list {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x mandatory;
+}
+#testimonials-list::-webkit-scrollbar {
+  height: 8px;
+}
+#testimonials-list::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+.testimonial-card {
+  min-width: 320px;
+  scroll-snap-align: start;
 }
 
 /* Buttons */

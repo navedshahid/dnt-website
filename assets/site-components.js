@@ -41,7 +41,7 @@ function renderHeader(config) {
         <a href="${config.contact.meeting_link}" target="_blank" class="btn-elite btn-elite-primary text-xs px-6 py-2">
           Book a Consultation
         </a>
-        <div id="services-dropdown" class="absolute top-14 left-1/2 -translate-x-1/2 bg-white shadow-xl rounded-xl border border-slate-200 hidden">
+        <div id="services-dropdown" class="absolute top-full mt-3 left-0 bg-white shadow-xl rounded-xl border border-slate-200 hidden min-w-[220px]">
           <a href="/services.html#pillar1" class="block px-4 py-3 text-slate-700 hover:bg-slate-50">ERP & IT Consulting</a>
           <a href="/services.html#pillar2" class="block px-4 py-3 text-slate-700 hover:bg-slate-50">Applied AI & Data</a>
           <a href="/services.html#pillar3" class="block px-4 py-3 text-slate-700 hover:bg-slate-50">Custom Apps & Platforms</a>
@@ -177,6 +177,13 @@ function initInteractions() {
             servicesLink.addEventListener('mouseleave', () => setTimeout(hide, 150));
             dropdown.addEventListener('mouseenter', show);
             dropdown.addEventListener('mouseleave', hide);
+            // Position dropdown relative to the services link
+            const align = () => {
+                const rect = servicesLink.getBoundingClientRect();
+                dropdown.style.left = `${rect.left}px`;
+            };
+            window.addEventListener('resize', align);
+            align();
         }
     }
 }
