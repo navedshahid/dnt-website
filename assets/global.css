@@ -122,6 +122,11 @@ h4 {
   to   { transform: translateX(-50%); }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  #clients-track { animation: none; }
+  .reveal { transition: none; opacity: 1; transform: none; }
+}
+
 /* Testimonials fade */
 .testimonial-card {
   transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease;

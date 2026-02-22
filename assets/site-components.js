@@ -36,11 +36,16 @@ function renderHeader(config) {
         <img src="${config.brand.logo}" alt="${config.brand.name}" class="h-10 md:h-12 group-hover:scale-105 transition-transform">
       </a>
       
-      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold">
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold relative">
         ${menuHtml}
         <a href="${config.contact.meeting_link}" target="_blank" class="btn-elite btn-elite-primary text-xs px-6 py-2">
           Book a Consultation
         </a>
+        <div id="services-dropdown" class="absolute top-14 left-1/2 -translate-x-1/2 bg-white shadow-xl rounded-xl border border-slate-200 hidden">
+          <a href="/services.html#pillar1" class="block px-4 py-3 text-slate-700 hover:bg-slate-50">ERP & IT Consulting</a>
+          <a href="/services.html#pillar2" class="block px-4 py-3 text-slate-700 hover:bg-slate-50">Applied AI & Data</a>
+          <a href="/services.html#pillar3" class="block px-4 py-3 text-slate-700 hover:bg-slate-50">Custom Apps & Platforms</a>
+        </div>
       </nav>
 
       <button id="mobile-menu-open" class="md:hidden text-slate-600 p-2">
@@ -159,6 +164,21 @@ function initInteractions() {
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Services hover submenu
+    const nav = document.querySelector('nav');
+    const dropdown = document.getElementById('services-dropdown');
+    if (nav && dropdown) {
+        const servicesLink = Array.from(nav.querySelectorAll('a')).find(a => a.textContent.trim().toLowerCase() === 'services');
+        if (servicesLink) {
+            const show = () => dropdown.classList.remove('hidden');
+            const hide = () => dropdown.classList.add('hidden');
+            servicesLink.addEventListener('mouseenter', show);
+            servicesLink.addEventListener('mouseleave', () => setTimeout(hide, 150));
+            dropdown.addEventListener('mouseenter', show);
+            dropdown.addEventListener('mouseleave', hide);
+        }
+    }
 }
 
 document.addEventListener('DOMContentLoaded', initSiteComponents);
