@@ -1,26 +1,26 @@
 [
-    {
-        "id": "1",
-        "title": "Asklytics AI",
-        "category": "AI Development",
-        "image": "https://placehold.co/960x640/0a0f1d/f1f5f9?text=Asklytics+AI",
-        "description": "Natural language query engine for enterprise databases.",
-        "link": "/asklytics-genai.html"
-    },
-    {
-        "id": "2",
-        "title": "Retail ERP Sync",
-        "category": "Software Development",
-        "image": "https://placehold.co/960x640/0a0f1d/f1f5f9?text=Retail+ERP+Sync",
-        "description": "Real-time synchronization between Odoo and Microsoft Dynamics.",
-        "link": "#"
-    },
-    {
-        "id": "3",
-        "title": "Canal Palms Digital Transformation",
-        "category": "Predictive IoT + Secure Platforms",
-        "image": "https://placehold.co/960x640/0a0f1d/f1f5f9?text=Canal+Palms",
-        "description": "Modernized a luxury housing platform into a secure, automated ecosystem: React 19 front-end with Framer Motion, Laravel 9 APIs with JWT/Sanctum, encrypted storage, and Cloudflare Zero Trust tunnels for hidden origins, DDoS mitigation, and secure payments (UBL/Stripe).",
-        "link": "#"
-    }
+  {
+    "id": "1",
+    "title": "Asklytics AI",
+    "category": "AI Development",
+    "image": "https://placehold.co/960x640/0a0f1d/f1f5f9?text=Asklytics+AI",
+    "description": "Natural language query engine for enterprise databases.",
+    "link": "/asklytics-genai.html"
+  },
+  {
+    "id": "2",
+    "title": "Bookkaru",
+    "category": "Cloud Native Migration",
+    "image": "https://placehold.co/960x640/0a0f1d/f1f5f9?text=Retail+ERP+Sync",
+    "description": "Migrated the application to cloud native infrastructre, containerized and horizontal scaling architecture. Secure the API, access management with zero trust network architecture.",
+    "link": "bookkaru.com"
+  },
+  {
+    "id": "3",
+    "title": "Canal Palms Digital Transformation",
+    "category": "Predictive IoT + Secure Platforms",
+    "image": "https://placehold.co/960x640/0a0f1d/f1f5f9?text=Canal+Palms",
+    "description": "Modernized a luxury housing platform into a secure, automated ecosystem: React 19 front-end with Framer Motion, Laravel 9 APIs with JWT/Sanctum, encrypted storage, and Cloudflare Zero Trust tunnels for hidden origins, DDoS mitigation, and secure payments (UBL/Stripe).",
+    "link": "canalpalms.com"
+  }
 ]
